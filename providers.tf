@@ -15,5 +15,5 @@ provider "aws" {
 # AWS using us-east-1 so cloudfront can find the SSL cert
 provider "aws" {
   region = "us-east-1"
-  alias = "us-east-1"
+  alias  = "us-east-1"
 }

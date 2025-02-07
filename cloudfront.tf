@@ -1,15 +1,15 @@
 resource "aws_acm_certificate" "cloud_resume_cert" {
-  provider = aws.us-east-1
-  domain_name       = "${var.domain_name}"
-  validation_method = "DNS"
-    subject_alternative_names = ["*.${var.domain_name}", "${var.domain_name}"]
+  provider                  = aws.us-east-1
+  domain_name               = var.domain_name
+  validation_method         = "DNS"
+  subject_alternative_names = ["*.${var.domain_name}", "${var.domain_name}"]
 
   lifecycle {
     create_before_destroy = true
   }
   tags = {
-      Project = "CloudResumeChallenge"
-    }
+    Project = "CloudResumeChallenge"
+  }
 }
 
 resource "aws_route53_record" "ssl_cert_validation_records" {
@@ -29,8 +29,8 @@ resource "aws_route53_record" "ssl_cert_validation_records" {
   zone_id         = var.route53_hosting_zone_id
 }
 
-resource "aws_acm_certificate_validation" "example" {
-  provider = aws.us-east-1
+resource "aws_acm_certificate_validation" "cloud_resume_site" {
+  provider                = aws.us-east-1
   certificate_arn         = aws_acm_certificate.cloud_resume_cert.arn
   validation_record_fqdns = [for record in aws_route53_record.ssl_cert_validation_records : record.fqdn]
 }
@@ -47,7 +47,7 @@ resource "aws_cloudfront_origin_access_control" "cloud_resume" {
 resource "aws_cloudfront_distribution" "cloud_resume" {
   enabled             = true
   default_root_object = "index.html"
-  aliases = ["newresume.${var.domain_name}"]
+  aliases             = ["${var.cname}.${var.domain_name}"]
 
   origin {
     domain_name              = "${var.bucket_name}.s3.${var.region}.amazonaws.com"
@@ -72,7 +72,7 @@ resource "aws_cloudfront_distribution" "cloud_resume" {
     max_ttl                = 86400
   }
 
-  price_class = "PriceClass_200"
+  price_class = "PriceClass_100"
 
   restrictions {
     geo_restriction {
@@ -83,20 +83,20 @@ resource "aws_cloudfront_distribution" "cloud_resume" {
 
   viewer_certificate {
     cloudfront_default_certificate = false
-    acm_certificate_arn = aws_acm_certificate.cloud_resume_cert.arn
-    ssl_support_method = "sni-only"
-    minimum_protocol_version = "TLSv1.2_2021"
+    acm_certificate_arn            = aws_acm_certificate.cloud_resume_cert.arn
+    ssl_support_method             = "sni-only"
+    minimum_protocol_version       = "TLSv1.2_2021"
   }
 
   tags = {
-      Project = "CloudResumeChallenge"
-    }
+    Project = "CloudResumeChallenge"
+  }
 }
 
 resource "aws_route53_record" "cloudfront_cname" {
 
   allow_overwrite = true
-  name            = "newresume"
+  name            = var.cname
   records         = [aws_cloudfront_distribution.cloud_resume.domain_name]
   ttl             = 60
   type            = "CNAME"
