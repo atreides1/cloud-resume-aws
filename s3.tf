@@ -78,8 +78,7 @@ resource "aws_s3_object" "static_files" {
   key          = each.key
   content_type = each.value.content_type
 
-  source     = each.value.source_path
-  content    = each.value.content
-  depends_on = [local_file.visitorCounterScript]
+  source      = each.value.source_path
+  source_hash = filemd5(each.value.source_path)
+  content     = each.value.content
 }
-
