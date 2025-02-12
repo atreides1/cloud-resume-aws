@@ -35,3 +35,6 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Ignore src/scripts/main.js as that file gets generated during `terraform apply`
+./src/scripts/main.js
