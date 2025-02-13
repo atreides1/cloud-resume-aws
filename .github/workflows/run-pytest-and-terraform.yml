@@ -1,6 +1,10 @@
 name: run-tests
 run-name: Run Pytest
-on: push
+on: 
+  push:
+    paths-ignore:
+      - '.github/workflows/*'
+  workflow_dispatch:
 permissions:
   id-token: write
   contents: read
