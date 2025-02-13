@@ -3,6 +3,7 @@ on: workflow_dispatch
 
 permissions:
   id-token: write
+  contents: read
 
 env:
   TF_LOG: INFO
@@ -30,6 +31,9 @@ jobs:
       
       - name: Copy Terraform Plan from S3
         run: aws s3 cp s3://${AWS_BUCKET_NAME}/${AWS_BUCKET_KEY_NAME} terraform.tfstate
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
