@@ -78,6 +78,8 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
 
-      - name: Terraform Apply
+      - name: Terraform Apply for AWS resources
         run: terraform apply -auto-approve
+
+      - name: Terraform Apply for main.js upload
         run: terraform apply -auto-approve
