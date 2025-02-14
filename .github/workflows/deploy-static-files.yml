@@ -1,9 +1,9 @@
-name: run-pytest-and-deploy-terraform
-run-name: Run Pytest
+name: deploy-static-website-files
+run-name: Deploy static website files
 on: 
   push:
-    paths-ignore:
-      - '.github/workflows/*'
+    paths:
+      - 'src/*'
   workflow_dispatch:
 permissions:
   id-token: write
@@ -12,37 +12,7 @@ env:
   TF_LOG: INFO
   AWS_REGION: ${{ secrets.AWS_REGION }}
 jobs:
-  run-pytest:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Configure AWS credentials from AWS account
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ secrets.AWS_ROLE }}
-          aws-region: ${{ secrets.AWS_REGION }}
-          role-session-name: GitHub-OIDC-TERRAFORM
-
-      - name: Check out repository code
-        uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-
-      - name: Install dependencies
-        run: pip install pytest pytest-md pytest-emoji boto3 botocore moto
-        
-      - uses: pavelzw/pytest-action@v2
-        with:
-          verbose: true
-          emoji: true
-          job-summary: true
-          custom-arguments: '-q'
-          click-to-expand: true
-          report-title: 'Test Report'
-      - run: pytest ./lambda-src/test_visitorCounter_lambda.py
   run-terraform:
-    needs: run-pytest
     runs-on: ubuntu-latest
     env:
       AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
@@ -79,11 +49,8 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
 
-      - name: Terraform Plan
-        run: terraform plan
+      - name: Terraform Plan (Frontend Resources)
+        run: terraform plan 
 
       - name: Terraform Apply for AWS resources
-        run: terraform apply -auto-approve
-
-      - name: Terraform Apply for main.js upload
         run: terraform apply -auto-approve
