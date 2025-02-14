@@ -102,3 +102,20 @@ resource "aws_route53_record" "cloudfront_cname" {
   type            = "CNAME"
   zone_id         = var.route53_hosting_zone_id
 }
+
+# invalidating cloudfront cache for updated website files
+resource "null_resource" "cloudfront_cache_invalidation" {
+  depends_on = [
+    aws_s3_object.static_files
+  ]
+
+  for_each = { for website_file, value in fileset("${path.module}/src", "**") : website_file => value if (value != "scripts/template.js") }
+
+  triggers = {
+    hash = filemd5("src/${each.value}")
+  }
+
+  provisioner "local-exec" {
+    command = "aws cloudfront create-invalidation --distribution-id ${aws_cloudfront_distribution.cloud_resume.id} --paths /${each.value}"
+  }
+}

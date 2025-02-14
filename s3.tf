@@ -8,56 +8,13 @@ resource "aws_s3_bucket" "cloud_resume" {
 
 # uploading website resources
 
-# create main.js so it uses the correct api url
-# use $$ to escape $
-resource "local_file" "visitorCounterScript" {
-  content  = <<EOF
-visitorCount = 0;
-const apiUrl = "${aws_apigatewayv2_api.http.api_endpoint}";
-const route  = "/getVisitorCount"
+# create main.js with the correct api url
+locals {
+  script_file_content = file("${path.module}/src/scripts/template.js")
+}
 
-fetch(apiUrl+route)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-    visitorCount = Number(data["visitorCount"]);
-    console.log("total visitor count: ", visitorCount);
-
-    // change number suffix (eg 1st 2nd 3rd 4th 5th 6th)
-    let suffix = "th";
-    switch (visitorCount % 10) {
-      case 1:
-        if (visitorCount != 11) {
-          suffix = "st";
-        }
-        break;
-      case 2:
-        if (visitorCount != 12) {
-          suffix = "nd";
-        }
-        break;
-      case 3:
-        if (visitorCount != 13) {
-          suffix = "rd";
-        }
-        break;
-      default:
-        suffix = "th";
-    }
-
-    document.getElementById(
-      "visitorCount"
-    ).innerText = `Fun fact, you're the $${visitorCount}$${suffix} visitor to this page`;
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
-  EOF
+resource "local_file" "main_js" {
+  content  = replace(local.script_file_content, "API_URL_HERE", "\"${aws_apigatewayv2_api.http.api_endpoint}\"")
   filename = "${path.module}/src/scripts/main.js"
 }
 
