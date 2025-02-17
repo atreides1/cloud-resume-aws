@@ -4,6 +4,7 @@ on:
   push:
     paths-ignore:
       - '.github/workflows/*'
+      - 'src/*'
   workflow_dispatch:
 permissions:
   id-token: write
