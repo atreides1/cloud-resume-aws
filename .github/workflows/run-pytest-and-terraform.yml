@@ -5,6 +5,7 @@ on:
     paths-ignore:
       - '.github/workflows/*'
       - 'src/*'
+      - 'README.md'
   workflow_dispatch:
 permissions:
   id-token: write
