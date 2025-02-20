@@ -1,0 +1,28 @@
+name: id-token
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [closed]
+    branches: [main]
+env:
+  TF_LOG: INFO
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+  AWS_BUCKET_KEY_NAME: ${{ secrets.AWS_BUCKET_KEY_NAME }}
+  TF_VAR_bucket_name: ${{ vars.TF_VAR_bucket_name }}
+  TF_VAR_cname: ${{ vars.TF_VAR_cname }}
+  TF_VAR_domain_name: ${{ vars.TF_VAR_domain_name }}
+  TF_VAR_dynamodb_table_name: ${{ vars.TF_VAR_dynamodb_table_name }}
+  TF_VAR_region: ${{ vars.TF_VAR_region }}
+  TF_VAR_route53_hosting_zone_id: ${{ secrets.ROUTE_53_HOSTING_ZONE_ID }}
+
+jobs:
+  get-id-token:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - run: |
+          ID_TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://demo" | jq -r .value)
+          echo $ID_TOKEN | base64
