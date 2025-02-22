@@ -1,8 +1,3 @@
-variable "api_endpoint" {
-  type        = string
-  description = "the API Gateway endpoint URL"
-}
-
 variable "bucket_name" {
   type        = string
   description = "Name for the s3 bucket that stores the website resources"
