@@ -112,7 +112,7 @@ resource "null_resource" "cloudfront_cache_invalidation" {
   for_each = { for website_file, value in fileset("${path.module}/src", "**") : website_file => value if (value != "scripts/template.js") }
 
   triggers = {
-    hash = filemd5("src/${each.value}")
+    hash = filemd5("${path.module}/src/${each.value}")
   }
 
   provisioner "local-exec" {

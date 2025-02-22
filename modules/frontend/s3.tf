@@ -14,7 +14,7 @@ locals {
 }
 
 resource "local_file" "main_js" {
-  content  = replace(local.script_file_content, "API_URL_HERE", "\"${aws_apigatewayv2_api.http.api_endpoint}\"")
+  content  = replace(local.script_file_content, "API_URL_HERE", "\"${var.api_endpoint}\"")
   filename = "${path.module}/src/scripts/main.js"
 }
 

@@ -8,7 +8,7 @@ variable "domain_name" {
   description = "The domain name for the cloud resume website"
 }
 
-variable "region" {
+variable "dynamodb_table_name" {
   type        = string
-  description = "A valid AWS region (eg us-east-1)"
+  description = "The table name in DynamoDB that stores the visitor count"
 }
