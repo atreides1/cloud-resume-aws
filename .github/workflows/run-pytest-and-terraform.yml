@@ -4,7 +4,7 @@ on:
   push:
     paths-ignore:
       - '.github/workflows/*'
-      - 'src/*'
+      - 'modules/frontend/src/*'
       - 'README.md'
   workflow_dispatch:
 permissions:
@@ -42,7 +42,7 @@ jobs:
           custom-arguments: '-q'
           click-to-expand: true
           report-title: 'Test Report'
-      - run: pytest ./lambda-src/test_visitorCounter_lambda.py
+      - run: pytest ./modules/backend/lambda-src/test_visitorCounter_lambda.py
   run-terraform:
     needs: run-pytest
     runs-on: ubuntu-latest
