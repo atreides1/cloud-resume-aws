@@ -1,136 +1,211 @@
 <!doctype html>
 <html>
   <head>
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+
+    <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Playwrite+IN:wght@100..400&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
       rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
+
     <link rel="stylesheet" href="style.css">
-    <title>Mercy Bhakta Resume</title>
+    <title>Mercy Bhakta's Resume</title>
   </head>
+
   <body>
-    <div class="header">
-      <h1>Mercy Bhakta</h1>
-
-      <div>
-        <a href="mailto:mercybhakta@gmail.com">mercybhakta@gmail.com</a>
-        <p> | </p>
-        <a href="https://www.linkedin.com/in/mercybhakta/">linkedin.com/in/mercybhakta/</a>
-        <p> | </p>
-        <a href="https://github.com/atreides1">github.com/atreides1</a>
-      </div>
+    <div>
+      <h1 id="mainTitle">Mercy Bhakta</h1>
     </div>
 
-    <h2>Experience</h2>
     <hr>
-
-    <div class="item">
-      <h3>Software Engineer</h3>
-      <p>Tego Cyber Inc. - Remote</p>
-      <div class="date">
-        <p>Jan 2022 - Feb 2024</p>
-      </div>
-      <ul>
-        <li>
-          Designed and implemented a threat correlation process using AWS services to search for over 15 million
-          potential threats in streaming logs inside AWS Security Lake environments. Used Python, AWS Lambda,
-          EventBridge, Athena, S3, and CloudFormation
-        </li>
-        <li>
-          Restructured the threat detail data collection process using .NET, Entity Framework, and PostgreSQL to find data
-          sources available per threat type and make batch requests, resulting in reduced processing time and minimized
-          external API calls
-        </li>
-        <li>
-          Designed Databricks and Cribl integrations to rapidly identify over 15 million potential threats in user SIEM data
-          on each platform. Developed Python notebooks (Databricks) and Redis lookup pipelines (Cribl) to perform data
-          correlations, and provided guidance to junior developers
-        </li>
-      </ul>
-    </div>
-
-    <div class="item">
-      <h3>Junior Software Engineer</h3>
-      <p>IONnovate & Tego Cyber Inc. - Remote</p>
-      <div class="date">
-        <p>Sept 2021 - Dec 2021</p>
-      </div>
-      <ul>
-        <li>
-          Used TypeScript and Node.js to create a custom Extract-Transform-Load (ETL) process to efficiently push large
-          threat intelligence datasets from multiple APIs to Elasticsearch
-        </li>
-        <li>
-          Built data visualizations focused on threat intelligence using Vega and Kibana Lens
-        </li>
-      </ul>
-    </div>
-
-    <div class="item">
-      <h3>Software Engineer, Full Stack</h3>
-      <p>Self-Employeed - Remote</p>
-      <div class="date">
-        <p>Oct 2020 - Sept 2021</p>
-      </div>
-      <ul>
-        <li>
-          Designed custom full-stack web applications for clients using the MERN stack (MongoDB, Express, React, and
-          Node.js) and Amazon Elastic Compute Cloud (EC2) to quickly launch prototypes and MVPs
-        </li>
-      </ul>
-    </div>
-
-    <div class="item">
-      <h3>Senior Help Desk Consultant</h3>
-      <p>Reed College - Portland, OR</p>
-      <div class="date">
-        <p>Oct 2017 - May 2020</p>
-      </div>
-      <ul>
-        <li>
-          Maintained and updated software on lab machines across campus using Radmind Unix remote management
-          tools
-        </li>
-        <li>
-          Delivered a wide-range of technical support services to students and faculty via walk-in consultations, email,
-          chat, and phone. Ensured timely and effective problem resolution
-        </li>
-      </ul>
-    </div>
-
-
-    <h2>Education</h2>
-    <hr>
-
-      <h3>Reed College,</h3>
-      <p>Portland, OR - BA in Computer Science</p>
-      <div class="date">
-        <p>May 2020</p>
-      </div>
-        <ul>
-          <li>
-            <a href="https://git.io/JJWVH">Thesis: "Colors in Flux: Rendering Iridescence Arising from Single-Layer Thin Films"</a>
-          </li>
-        </ul>
-
-    <h2>Skills</h2>
-    <hr>
-
-    <p><b>Languages:</b> Python, C#, JavaScript, Bash, SQL</p>
-    <br>
-    <p><b>Cloud Services:</b> Amazon Web Services (AWS)</p>
-    <br>
-    <p><b>Infrastructure (IaC):</b> CloudFormation, Terraform</p>
-    <br>
-    <p><b>Operating Systems:</b> Windows, Linux</p>
-    <br>
-    <p><b>Certifications:</b> AWS Certified Cloud Practitioner, AWS Certified Solutions Architect - Associate</p>
-    <br>
     
+    <section class="resumeSection">
+      <div class="container" id="iconContainer">
+
+
+            <a href="mailto:mercybhakta@gmail.com">
+              <img class="icon" src="img/icons/email.svg" />
+            </a>
+
+            <a href="https://www.linkedin.com/in/mercybhakta/">
+              <img class="icon" src="https://img.icons8.com/ios-filled/50/linkedin.png" alt="linkedin" />
+            </a>
+
+            <a href="https://github.com/atreides1">
+              <img class="icon" src="https://unpkg.com/simple-icons@latest/icons/github.svg" />
+            </a>
+
+      </div>
+    </section>
+
+    <section class="resumeSection">
+      <div class="container">
+
+        <h2 class="sectionTitle">⭐ Experience</h2>
+
+        <div class="item">
+          <h3>Software Engineer</h3>
+          <p class="note">Tego Cyber Inc. - Remote</p>
+
+          <!-- <div class="date"> -->
+          <p><strong>Jan 2022 - Feb 2024</strong></p>
+          <!-- </div> -->
+
+          <ul>
+            <li>
+              Designed and implemented a threat correlation process using AWS services to search for over 15 million
+              potential threats in streaming logs inside AWS Security Lake environments. Used Python, AWS Lambda,
+              EventBridge, Athena, S3, and CloudFormation
+            </li>
+            <li>
+              Restructured the threat detail data collection process using .NET, Entity Framework, and PostgreSQL to find data
+              sources available per threat type and make batch requests, resulting in reduced processing time and minimized
+              external API calls
+            </li>
+            <li>
+              Designed Databricks and Cribl integrations to rapidly identify over 15 million potential threats in user SIEM data
+              on each platform. Developed Python notebooks (Databricks) and Redis lookup pipelines (Cribl) to perform data
+              correlations, and provided guidance to junior developers
+            </li>
+          </ul>
+
+        </div>
+
+        <div class="item">
+          <h3>Junior Software Engineer</h3>
+          <p class="note">IONnovate & Tego Cyber Inc. - Remote</p>
+
+          <!-- <div class="date"> -->
+            <p><strong>Sept 2021 - Dec 2021</strong></p>
+          <!-- </div> -->
+
+          <ul>
+            <li>
+              Used TypeScript and Node.js to create a custom Extract-Transform-Load (ETL) process to efficiently push large
+              threat intelligence datasets from multiple APIs to Elasticsearch
+            </li>
+            <li>
+              Built data visualizations focused on threat intelligence using Vega and Kibana Lens
+            </li>
+          </ul>
+
+        </div>
+
+        <div class="item">
+          <h3>Software Engineer, Full Stack</h3>
+          <p class="note">Self-Employeed - Remote</p>
+
+          <!-- <div class="date"> -->
+            <p><strong>Oct 2020 - Sept 2021</strong></p>
+          <!-- </div> -->
+
+          <ul>
+            <li>
+              Designed custom full-stack web applications for clients using the MERN stack (MongoDB, Express, React, and
+              Node.js) and Amazon Elastic Compute Cloud (EC2) to quickly launch prototypes and MVPs
+            </li>
+          </ul>
+
+        </div>
+
+        <div class="item">
+          <h3>Senior Help Desk Consultant</h3>
+          <p class="note">Reed College - Portland, OR</p>
+
+          <!-- <div class="date"> -->
+            <p><strong>Oct 2017 - May 2020</strong></p>
+          <!-- </div> -->
+
+          <ul>
+            <li>
+              Maintained and updated software on lab machines across campus using Radmind Unix remote management
+              tools
+            </li>
+            <li>
+              Delivered a wide-range of technical support services to students and faculty via walk-in consultations, email,
+              chat, and phone. Ensured timely and effective problem resolution
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="resumeSection">
+      <div class="container">
+        <h2 class="sectionTitle">⭐ Projects</h2>
+        
+        <div class="item">
+          <h3>AWS Cloud Resume Challenge</h3>
+
+          <div class="note">
+            <a href ="https://github.com/atreides1/cloud-resume-aws">github.com/atreides1/cloud-resume-aws</a>
+          </div>
+
+          <ul>
+            <li>
+              Developed a highly available, serverless resume website along with visitor counter using AWS resources. Used Terraform
+              for IaC (Infrastructure as Code) and Github Actions for CI/CD
+            </li>
+            <li>
+              You're looking at the end result!
+            </li>
+            <li>
+              Used S3, CloudFront, Route 53, API Gateway, Lambda, DynamoDB, Terraform, and Github Actions
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="resumeSection">
+    <div class="container">
+      <h2 class="sectionTitle">⭐ Education</h2>
+
+        <div>
+        <h3>Reed College, Portland, OR</h3>
+        <p>BA in <strong>Computer Science</strong> | May 2020</p>
+
+          <ul>
+            <li>
+              <a href="https://git.io/JJWVH">Thesis: "Colors in Flux: Rendering Iridescence Arising from Single-Layer Thin Films"</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section class="resumeSection">
+      <div class="container" id="skills">
+        <h2 class="sectionTitle">⭐ Skills</h2>
+        <div>
+          <p><b>Languages:</b> Python, C#, JavaScript, Bash, SQL</p>
+          <p><b>Cloud Services:</b> Amazon Web Services (AWS)</p>
+          <p><b>Infrastructure (IaC):</b> CloudFormation, Terraform</p>
+          <p><b>Operating Systems:</b> Windows, Linux</p>
+          <p><b>Certifications:</b> AWS Certified Cloud Practitioner, AWS Certified Solutions Architect - Associate</p>
+        </div>
+      </div>
+    </section>
+
     <hr>
-    <p id="visitorCount">Fun fact, you're the __ visitor to this page: </p>
+    <section class="resumeSection">
+      <div class="container">
+        <p id="visitorCount">Fun fact, you're the __ visitor to this page</p>
+      </div>
+    </section>
+
     <!-- script for keeping track of visitor count -->
     <script src="scripts/main.js"></script>
   </body>
