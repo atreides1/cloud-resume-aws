@@ -2,7 +2,7 @@
     --background-color: #fffcee;
     --text-color: #333;
     --accent-color: #FFB703;
-    --sectionPadding: 0rem 1rem; /*clamp(1rem, 5vw, 5rem) 1rem;*/
+    --sectionPadding: 0rem 1rem;
     --title-font: "Lora", serif;
     --section-title-font: "Lora", serif;
     --body-font: "DM Sans", serif;
@@ -11,7 +11,6 @@
 body {
     background-color: var(--background-color);
     margin: 40px auto;
-    max-width: 650px;
     line-height: 1.7;
     font-size: 20px;
     color: var(--text-color);
@@ -33,6 +32,10 @@ hr {
     background: 0 0;
     width: 75%;
     margin: 1.8em auto;
+}
+
+li+li {
+    margin-top: 10px;
 }
 
 
@@ -90,8 +93,6 @@ a:hover {
         margin: auto;
         display: flex;
         flex-direction: column;
-        /* align-items: center; */
-        /*gap: 2rem;clamp(3rem, 6vw, 4rem);*/
     }
 }
 
@@ -102,5 +103,7 @@ a:hover {
 
 /* Desktop */
 @media only screen and (min-width: 81.25rem) {
-
+    body {
+        max-width: 60%;
+    }
 }
