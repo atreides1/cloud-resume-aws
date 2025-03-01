@@ -116,6 +116,6 @@ resource "null_resource" "cloudfront_cache_invalidation" {
   }
 
   provisioner "local-exec" {
-    command = "aws cloudfront create-invalidation --distribution-id ${aws_cloudfront_distribution.cloud_resume.id} --paths /${each.value}"
+    command = "sleep 1; aws cloudfront create-invalidation --distribution-id ${aws_cloudfront_distribution.cloud_resume.id} --paths /${each.value}"
   }
 }
